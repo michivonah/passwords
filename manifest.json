@@ -1,0 +1,32 @@
+{
+  "name": "Passwords by Michi",
+  "short_name": "Passwords",
+  "description": "Simple password generator.",
+  "lang": "en",
+  "orientation": "any",
+  "theme_color": "#181818",
+  "background_color": "#181818",
+  "start_url": "https://passwords.michivonah.ch",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "https://passwords.michivonah.ch/logo.png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "https://passwords.michivonah.ch/logo.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "https://passwords.michivonah.ch/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://passwords.michivonah.ch/logo.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ]
+}
