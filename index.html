@@ -75,9 +75,16 @@
       }
 
       function copyPassword(){
+
         var password = document.getElementById('password');
         var passwordText = document.getElementById('password').textContent;
-        navigator.clipboard.writeText(passwordText);
+        if (navigator.userAgent.match(/ipad|ipod|iphone/i)){ // Apple devices
+          passwort.textContent.setSelectionRange(0, 999);
+          document.execCommand('copy');
+        }
+        else{ // Android, Windows, etc.
+          navigator.clipboard.writeText(passwordText);
+        }
         var copyAlert = document.getElementById('copyAlert');
         copyAlert.style.display = "block";
         //copyAlert.style.display = "none";
