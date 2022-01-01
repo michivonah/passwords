@@ -12,6 +12,7 @@ body{
    --secondcolor: #d35400;
    --background: #f6f6f6;
    --color: #181818;
+   overflow: hidden;
    }
 
    #content{
@@ -94,6 +95,15 @@ body{
      color: var(--color);
      border: 2px solid;
      border-color: var(--color);
+   }
+
+   @keyframes roll{
+     from{
+       transform: rotate(0deg)
+     }
+     to{
+       transform: rotate(360deg)
+     }
    }
 
   ::selection {background: var(--maincolor); color: #ffffff; border-radius: 12px;}
