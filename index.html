@@ -41,7 +41,7 @@
         </div>
       </div>
 
-      <div id="copyAlert">
+      <div id="copyAlert" onclick="roll();">
         <p>Password copied!</p>
       </div>
 
@@ -88,6 +88,12 @@
         var copyAlert = document.getElementById('copyAlert');
         copyAlert.style.display = "block";
         //copyAlert.style.display = "none";
+      }
+
+      function roll(){
+          document.body.style.animation = "roll";
+          document.body.style.animationIterationCount = "1";
+          document.body.style.animationDuration = "4s";
       }
 
       </script>
