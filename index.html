@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <title>Passwords</title>
   <meta name="mobile-web-app-title" content="Passwords">
@@ -15,7 +15,7 @@
   <meta charset="UTF-8">
   <meta name="description" content="Simple Password Generator">
   <meta name="author" content="Michi von Ah">
-  <meta name="robots" content="noindex">
+  <meta name="robots" content="index">
   <meta http-equiv="expires" content="43200">
 
   <meta name="theme-color" content="#3498db">
@@ -32,7 +32,7 @@
 
       <div id="navbar-placeholder"></div>
       <div id="navbar">
-        <p>Passwords</p>
+        <p>Passwords <i class="ai-key"></i></p>
       </div>
 
       <div id="content">
@@ -50,17 +50,15 @@
       // Loading
       window.addEventListener('load', () => {
         if(window.matchMedia('(prefers-color-scheme: dark)').matches || localStorage.getItem('darkmode') == "true"){
-            document.body.style.setProperty('--maincolor', '#3498db');
-            document.body.style.setProperty('--secondcolor', '#2980b9');
             document.body.style.setProperty('--background', '#181818');
             document.body.style.setProperty('--color', '#fff');
             console.log('Darkmode activated.');
         	}
-          generatePassword()
+          generatePassword();
       });
 
       window.addEventListener('click', () => {
-          copyPassword()
+          copyPassword();
       });
 
       function generatePassword(){
