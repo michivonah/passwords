@@ -1,5 +1,4 @@
-# Simple password generator
-<img src="" width="" height="">
+# Simple password generator <img src="https://github.com/michivonah/passwords/blob/main/logo.png?raw=true" width="auto" height="34px">
 
 Features:
 - minimalistic design
