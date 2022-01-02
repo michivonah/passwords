@@ -31,17 +31,38 @@
 <body>
 
       <div id="navbar-placeholder"></div>
-      <div id="navbar">
+      <div id="navbar" class="disableSelection">
         <p>Passwords <i class="ai-key"></i></p>
       </div>
 
       <div id="content">
-        <div id="passwordContainer">
+        <div id="passwordContainer" class="disableSelection" onclick="copyPassword();">
           <p id="password">Hello!</p>
+        </div>
+
+        <div id="buttons">
+          <button class="pwButton disableSelection" onclick="generatePassword(); window.event.stopPropagation();">
+            <i class="ai-arrow-clockwise"></i>
+          </button>
+
+          <button class="pwButton disableSelection" onclick="toggleSection('settings')">
+            <i class="ai-gear"></i>
+          </button>
+        </div>
+
+        <div id="settings" class="disableSelection">
+          <p>Settings</p>
+          <select id="securityLevel">
+            <option selected disabled value="default">Password Type</option>
+            <option value="wlan">WLAN Password</option>
+            <option value="code">Only numbers eg. PIN</option>
+            <option value="lettersNumbers">Letters & Numbers</option>
+            <option value="lettersNumbersSymbols">Letters, Numbers & Symbols</option>
+          </select>
         </div>
       </div>
 
-      <div id="copyAlert" onclick="roll();">
+      <div id="copyAlert" class="disableSelection" onclick="roll();">
         <p>Password copied!</p>
       </div>
 
@@ -58,24 +79,53 @@
       });
 
       window.addEventListener('click', () => {
-          copyPassword();
+          //copyPassword();
       });
 
       function generatePassword(){
+        document.getElementById('copyAlert').style.display = "none"; // hide copy alert
+        var securityLevel = document.getElementById('securityLevel').value;
         var yourPassword = "";
-        var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-*/%.:;=?!";
+        switch(securityLevel){
+          case "wlan":
+            var chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            var pwLenght = 16;
+          break;
+
+          case "code":
+            var chars = "0123456789";
+            var pwLenght = 6;
+          break;
+
+          case "lettersNumbers":
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var pwLenght = 12;
+          break;
+
+          case "lettersNumbersSymbols":
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-*/%.:;=?!";
+            var pwLenght = 14;
+          break;
+
+          default:
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-*/%.:;=?!";
+            var pwLenght = 14;
+        }
         var charNum = chars.length;
         var count = 0;
-        var pwLenght = 14;
         while(count < pwLenght){
           count++;
           yourPassword += chars.charAt(Math.random() * (charNum - 0));
+          if(securityLevel == "wlan"){
+            if(count % 4 == 0 && count != 16){
+              yourPassword += "-";
+            }
+          }
         }
         document.getElementById('password').textContent = yourPassword;
       }
 
       function copyPassword(){
-
         var password = document.getElementById('password');
         var passwordText = document.getElementById('password').textContent;
         if (navigator.userAgent.match(/ipad|ipod|iphone/i)){ // Apple devices
@@ -94,6 +144,12 @@
           document.body.style.animation = "roll";
           document.body.style.animationIterationCount = "1";
           document.body.style.animationDuration = "4s";
+      }
+
+      function toggleSection(sectionName){
+        var section = document.getElementById(sectionName);
+        if(section.style.display == "block") section.style.display = "none";
+        else section.style.display = "block";
       }
 
       </script>
