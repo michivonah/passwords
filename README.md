@@ -7,6 +7,7 @@ Features:
 - generate passwords
 - copy password
 - set type of password
+- darkmode
 
 Coming features:
 - set length of password (via url parameter)
