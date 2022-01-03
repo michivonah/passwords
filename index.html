@@ -62,6 +62,7 @@
             <option value="code">Only numbers eg. PIN</option>
             <option value="lettersNumbers">Letters & Numbers</option>
             <option value="lettersNumbersSymbols">Letters, Numbers & Symbols</option>
+            <option value="emojis">Emojis</option>
           </select>
         </div>
       </div>
@@ -109,6 +110,11 @@
           case "lettersNumbersSymbols":
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-*/%.:;=?!";
             var pwLenght = 14;
+          break;
+
+          case "emojis":
+            var chars = "😀😁😂🤣😃😅😉😊😎😍🙄😐😶🤩🤑😜🤬😈🤢💪🤏🖐🤙✌👌✋👆👋🎄🎃🎉🍕🍔🍟🍿🍞🥐🥩🍗🚗🚙🚜🚄✈";
+            var pwLenght = 6;
           break;
 
           default:
