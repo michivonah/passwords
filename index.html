@@ -18,9 +18,9 @@
   <meta name="robots" content="index">
   <meta http-equiv="expires" content="43200">
 
-  <meta name="theme-color" content="#3498db">
-  <meta name="mobile-web-app-status-bar-style" content="#2980b9">
-  <meta name="apple-mobile-web-app-status-bar-style" content="#2980b9">
+  <meta name="theme-color" content="#181818">
+  <meta name="mobile-web-app-status-bar-style" content="#181818">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#181818">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -38,6 +38,7 @@
       <div id="content">
         <div id="passwordContainer" class="disableSelection" onclick="copyPassword();">
           <p id="password">Hello!</p>
+          <input id="passwordField" type="text" style="display:none;">
         </div>
 
         <div id="buttons">
@@ -58,12 +59,13 @@
           <p>Settings</p>
           <select id="securityLevel">
             <option selected disabled value="default">Password Type</option>
-            <option value="wlan">WLAN Password</option>
-            <option value="code4">Only numbers eg. PIN (4-dig)</option>
-            <option value="code6">Only numbers eg. PIN (6-dig)</option>
+            <option value="code4">4-digit PIN</option>
+            <option value="code6">6-digit PIN</option>
+            <option value="hex">Hex Code</option>
             <option value="lettersNumbers">Letters & Numbers</option>
             <option value="lettersNumbersSymbols">Letters, Numbers & Symbols</option>
-            <option value="emojis" disabled>Emojis</option>
+            <option value="wlan">WLAN Password</option>
+            <option value="emojis" hidden>Emojis</option>
           </select>
         </div>
       </div>
@@ -118,6 +120,12 @@
             var pwLenght = 14;
           break;
 
+          case "hex":
+            var chars = "01234567890ABCDEF";
+            var pwLenght = 6;
+            yourPassword = "#";
+          break;
+
           case "emojis":
             var chars = String.fromCodePoint(0x1F525) + String.fromCodePoint(0x1F600) + String.fromCodePoint(0x1F605) + String.fromCodePoint(0x1F602) + String.fromCodePoint(0x1F643) + String.fromCodePoint(0x1F60E);
             var pwLenght = 6;
@@ -139,13 +147,22 @@
           }
         }
         document.getElementById('password').textContent = yourPassword;
+        document.getElementById('passwordField').value = document.getElementById('password').textContent;
       }
 
       function copyPassword(){
         var password = document.getElementById('password');
         var passwordText = document.getElementById('password').textContent;
         if (navigator.userAgent.match(/ipad|ipod|iphone/i)){ // Apple devices
-          passwort.textContent.setSelectionRange(0, 999);
+          var pwField = document.getElementById('passwordField');
+          var copyRange = document.createRange();
+          pwField.contentEditable = true;
+          pwField.readOnly = false;
+          copyRange.selectNodeContents(pwField);
+          var selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(copyRange);
+          pwField.setSelectionRange(0, 999999);
           document.execCommand('copy');
         }
         else{ // Android, Windows, etc.
