@@ -59,10 +59,11 @@
           <select id="securityLevel">
             <option selected disabled value="default">Password Type</option>
             <option value="wlan">WLAN Password</option>
-            <option value="code">Only numbers eg. PIN</option>
+            <option value="code4">Only numbers eg. PIN (4-dig)</option>
+            <option value="code6">Only numbers eg. PIN (6-dig)</option>
             <option value="lettersNumbers">Letters & Numbers</option>
             <option value="lettersNumbersSymbols">Letters, Numbers & Symbols</option>
-            <option value="emojis">Emojis</option>
+            <option value="emojis" disabled>Emojis</option>
           </select>
         </div>
       </div>
@@ -97,7 +98,12 @@
             var pwLenght = 16;
           break;
 
-          case "code":
+          case "code4":
+            var chars = "0123456789";
+            var pwLenght = 4;
+          break;
+
+          case "code6":
             var chars = "0123456789";
             var pwLenght = 6;
           break;
@@ -113,7 +119,7 @@
           break;
 
           case "emojis":
-            var chars = "😀😁😂🤣😃😅😉😊😎😍🙄😐😶🤩🤑😜🤬😈🤢💪🤏🖐🤙✌👌✋👆👋🎄🎃🎉🍕🍔🍟🍿🍞🥐🥩🍗🚗🚙🚜🚄✈";
+            var chars = String.fromCodePoint(0x1F525) + String.fromCodePoint(0x1F600) + String.fromCodePoint(0x1F605) + String.fromCodePoint(0x1F602) + String.fromCodePoint(0x1F643) + String.fromCodePoint(0x1F60E);
             var pwLenght = 6;
           break;
 
