@@ -61,8 +61,14 @@ body{
      font-weight: bold;
    }
 
+   .blur{
+     text-shadow: 0 0 26px white;
+     color: transparent;
+   }
+
    #copyAlert{
      width: 80%;
+     max-width: 600px;
      height: auto;
      font-size: 14px;
      text-align: center;
@@ -119,6 +125,7 @@ body{
      font-size: 14px;
      padding: 4px;
      font-family: "open sans", sans-serif;
+     transition: all 0.2s ease-in;
    }
 
    .disableSelection{
@@ -138,5 +145,11 @@ body{
      }
    }
 
-  ::selection {background: var(--maincolor); color: #ffffff; border-radius: 12px;}
-  ::-moz-selection {background: var(--maincolor); color: #ffffff; border-radius: 12px;}
+    @media screen and (min-width:600px){
+      #copyAlert{
+        margin-left: calc((100% - 600px) / 2);
+      }
+    }
+
+  ::selection {background: var(--background); color: #ffffff; border-radius: 12px;}
+  ::-moz-selection {background: var(--background); color: #ffffff; border-radius: 12px;}
