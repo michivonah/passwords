@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
 <head>
   <title>Passwords</title>
   <meta name="mobile-web-app-title" content="Passwords">
@@ -21,7 +21,7 @@
   <meta name="theme-color" content="#181818">
   <meta name="mobile-web-app-status-bar-style" content="#181818">
   <meta name="apple-mobile-web-app-status-bar-style" content="#181818">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="manifest" href="manifest.json">
@@ -65,7 +65,7 @@
             <option value="lettersNumbers">Letters & Numbers</option>
             <option value="lettersNumbersSymbols">Letters, Numbers & Symbols</option>
             <option value="wlan">WLAN Password</option>
-            <option value="emojis" hidden>Emojis</option>
+            <option value="emojis" disabled hidden style="display:none;">Emojis</option>
           </select>
         </div>
       </div>
@@ -146,7 +146,12 @@
             }
           }
         }
-        document.getElementById('password').textContent = yourPassword;
+        var password = document.getElementById('password');
+        password.textContent = yourPassword;
+        password.classList = "blur";
+        setTimeout(function(){
+          password.classList = "";
+        }, 400);
         document.getElementById('passwordField').value = document.getElementById('password').textContent;
       }
 
@@ -170,7 +175,9 @@
         }
         var copyAlert = document.getElementById('copyAlert');
         copyAlert.style.display = "block";
-        //copyAlert.style.display = "none";
+        setTimeout(function(){
+          copyAlert.style.display = "none";
+        }, 2000);
       }
 
       function roll(){
