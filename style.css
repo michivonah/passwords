@@ -59,10 +59,11 @@ body{
    #password{
      font-size: 26px;
      font-weight: bold;
+     transition: .2s linear;
    }
 
    .blur{
-     text-shadow: 0 0 26px white;
+     text-shadow: 0 0 26px var(--color);
      color: transparent;
    }
 
