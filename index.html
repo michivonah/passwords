@@ -38,7 +38,7 @@
       <div id="content">
         <div id="passwordContainer" class="disableSelection" onclick="copyPassword();">
           <p id="password">Hello!</p>
-          <textarea id="passwordField" style="display:none;"></textarea>
+          <textarea id="passwordField" style="display:none;" contenteditable="true"></textarea>
         </div>
 
         <div id="buttons">
@@ -66,7 +66,6 @@
             <option value="lettersNumbersSymbols">Letters, Numbers & Symbols</option>
             <option value="symbols">Only symbols</option>
             <option value="wlan">WLAN Password</option>
-            <option value="emojis" disabled hidden>Emojis</option>
           </select>
         </div>
       </div>
@@ -170,12 +169,17 @@
           var copyRange = document.createRange();
           pwField.contentEditable = true;
           pwField.readOnly = false;
-          copyRange.selectNodeContents(pwField);
+          /*copyRange.selectNodeContents(pwField);
           var selection = window.getSelection();
           selection.removeAllRanges();
           selection.addRange(copyRange);
           pwField.setSelectionRange(0, 999999);
           document.execCommand('copy');
+
+          navigator.clipboard.writeText(passwordText).then(() => {
+            console.log("Password copied!");
+          });*/
+          navigator.clipboard.write(pwField.value);
         }
         else{ // Android, Windows, etc.
           navigator.clipboard.writeText(passwordText);
