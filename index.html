@@ -75,6 +75,18 @@
       </div>
 
 
+      <div id="history" onclick="//window.event.stopPropagation();" style="display:none;">
+        <div id="openHistory" onclick="toggleSection('historyC')">
+          <i class="ai-chevron-up"></i>
+        </div>
+        <div id="historyC">
+          <h3>History</h3>
+          <div id="historyContainer">
+          </div>
+        </div>
+      </div>
+
+
       <script>
       // Loading
       window.addEventListener('load', () => {
@@ -84,6 +96,8 @@
             console.log('Darkmode activated.');
         	}
           generatePassword();
+
+          if(document.getElementById('historyContainer').innerHTML == false)document.getElementById('historyContainer').innerHTML = "<p>History is empty.</p>";
       });
 
       window.addEventListener('click', () => {
@@ -165,25 +179,15 @@
         var password = document.getElementById('password');
         var passwordText = document.getElementById('password').textContent;
         if (navigator.userAgent.match(/ipad|ipod|iphone/i)){ // Apple devices
-          var pwField = document.getElementById('passwordField');
-          var copyRange = document.createRange();
-          pwField.contentEditable = true;
-          pwField.readOnly = false;
-          /*copyRange.selectNodeContents(pwField);
-          var selection = window.getSelection();
-          selection.removeAllRanges();
-          selection.addRange(copyRange);
-          pwField.setSelectionRange(0, 999999);
-          document.execCommand('copy');
-
-          navigator.clipboard.writeText(passwordText).then(() => {
-            console.log("Password copied!");
-          });*/
-          navigator.clipboard.write(pwField.value);
+          navigator.share(passwordText);
         }
         else{ // Android, Windows, etc.
           navigator.clipboard.writeText(passwordText);
         }
+        var historyContainer = document.getElementById('historyContainer');
+        var newHistoryItem = document.createElement('p');
+        newHistoryItem.textContent = passwordText;
+        historyContainer.appendChild(newHistoryItem);
         var copyAlert = document.getElementById('copyAlert');
         copyAlert.style.display = "block";
         setTimeout(function(){
