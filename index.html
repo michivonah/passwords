@@ -46,7 +46,7 @@
             <i class="ai-arrow-clockwise"></i>
           </button>
 
-          <button class="pwButton disableSelection" onclick="copyPassword();">
+          <button class="pwButton disableSelection" id="copyBtn">
             <i class="ai-copy"></i>
           </button>
 
@@ -67,6 +67,7 @@
             <option value="symbols">Only symbols</option>
             <option value="wlan">WLAN Password</option>
           </select>
+          <button id="testBtn">testBtn</button>
         </div>
       </div>
 
@@ -96,6 +97,10 @@
             console.log('Darkmode activated.');
         	}
           generatePassword();
+
+          document.getElementById('copyBtn').addEventListener('click', async () => {
+            copyPassword();
+          });
 
           if(document.getElementById('historyContainer').innerHTML == false)document.getElementById('historyContainer').innerHTML = "<p>History is empty.</p>";
       });
@@ -178,8 +183,12 @@
       function copyPassword(){
         var password = document.getElementById('password');
         var passwordText = document.getElementById('password').textContent;
-        if (navigator.userAgent.match(/ipad|ipod|iphone/i)){ // Apple devices
-          navigator.share(passwordText);
+        var share = {
+         title: 'Password',
+         text: passwordText
+        }
+        if(navigator.userAgent.match(/ipad|ipod|iphone/i)){ // Apple devices
+          navigator.share(share);
         }
         else{ // Android, Windows, etc.
           navigator.clipboard.writeText(passwordText);
