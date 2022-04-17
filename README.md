@@ -10,6 +10,4 @@ Features:
 - darkmode
 
 Coming features:
-- set length of password (via url parameter)
 - optional history
-- json api
