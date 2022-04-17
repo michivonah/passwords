@@ -64,6 +64,8 @@
             <option value="hex">Hex Code</option>
             <option value="lettersNumbers">Letters & Numbers</option>
             <option value="lettersNumbersSymbols">Letters, Numbers & Symbols</option>
+            <option value="ultraExtreme">Extreme secure!</option>
+            <option value="ultraExtreme+">More than extreme secure!</option>
             <option value="symbols">Only symbols</option>
             <option value="wlan">WLAN Password</option>
           </select>
@@ -136,6 +138,16 @@
           case "lettersNumbersSymbols":
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-*/%.:;=?!";
             var pwLenght = 14;
+          break;
+
+          case "ultraExtreme":
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-*/\%.:;=?!(){}[]<>^§$€_";
+            var pwLenght = 30;
+          break;
+
+          case "ultraExtreme+":
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-*/\%.:;=?!(){}[]<>^§$€_";
+            var pwLenght = 120;
           break;
 
           case "hex":
